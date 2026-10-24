@@ -265,6 +265,30 @@
 
     </nav>
 
+<!--Main content-->
+```html
+<!-- SEARCH SECTION -->
+<section class="search-section" style="text-align: center;">
+    <h2>Search eKofini@Proper</h2>
+
+    <input
+        type="text"
+        id="siteSearch"
+        placeholder="Search for coffee, meals or services..."
+        style="padding: 10px; width: 60%; max-width: 400px;"
+    >
+
+    <button
+        type="button"
+        onclick="searchWebsite()"
+        style="padding: 10px; cursor: pointer;"
+    >
+        Search
+    </button>
+
+    <p id="searchMessage"></p>
+</section>
+```
 
     <!-- MAIN CONTENT -->
 
@@ -538,6 +562,28 @@
         </p>
 
     </footer>
+```html
+<script>
+function searchWebsite() {
+    const searchInput = document.getElementById("siteSearch");
+    const searchMessage = document.getElementById("searchMessage");
+    const searchTerm = searchInput.value.trim().toLowerCase();
+
+    if (searchTerm === "") {
+        searchMessage.textContent = "Please enter something to search for.";
+        return;
+    }
+
+    const pageContent = document.querySelector("main").innerText.toLowerCase();
+
+    if (pageContent.includes(searchTerm)) {
+        searchMessage.textContent = "Found '" + searchInput.value + "' on this page!";
+    } else {
+        searchMessage.textContent = "Sorry, '" + searchInput.value + "' was not found on this page.";
+    }
+}
+</script>
+```
 
 
 </body>

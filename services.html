@@ -274,6 +274,18 @@
         <section>
 
             <h2>What We Offer</h2>
+           <label for="serviceSearch">Search our services:</label>
+
+<input
+type="search"
+id="serviceSearch"
+placeholder="Search coffee, meals, meetings..."
+aria-label="Search our services"
+
+>
+
+<p id="searchMessage" aria-live="polite"></p>
+ 
 
             <div class="services-container">
 
@@ -428,30 +440,127 @@
                 </a>
             </p>
 
-        </section>
+      <!-- IMAGE GALLERY -->
 
+<section class="gallery-section">
 
-        <!-- IMAGE AT THE BOTTOM -->
+```
+<h2>Our Coffee Shop Gallery</h2>
 
-        <section>
+<p>
+    Explore our coffee, meals and welcoming environment.
+    Click an image to view it in a larger size.
+</p>
 
-            <h2>Our Coffee Shop</h2>
+<div class="image-gallery">
 
-            <p>
-                A comfortable place to enjoy good food,
-                great coffee and time with friends and family.
-            </p>
+    <img
+        src="image/coffee.webp"
+        alt="Fresh coffee at eKofini@Proper"
+        class="gallery-image"
+        tabindex="0"
+    >
 
-            <img
-                src="image/image.webp"
-                alt="eKofini@Proper Coffee Shop"
-                class="bottom-image"
-            >
+    <img
+        src="image/photos.webp"
+        alt="Meals and snacks at eKofini@Proper"
+        class="gallery-image"
+        tabindex="0"
+    >
 
-        </section>
+    <img
+        src="image/meeting.webp"
+        alt="Meeting space at eKofini@Proper"
+        class="gallery-image"
+        tabindex="0"
+    >
+
+    <img
+        src="image/image.webp"
+        alt="Inside eKofini@Proper coffee shop"
+        class="gallery-image"
+        tabindex="0"
+    >
+
+</div>
+```
+
+</section>
+
+<!-- LIGHTBOX -->
+
+<div id="lightbox" class="lightbox" hidden>
+
+```
+<button id="closeLightbox" class="close-lightbox"
+        type="button" aria-label="Close enlarged image">&times;</button>
+
+<img id="lightboxImage" src="" alt="">
+
+<p id="lightboxCaption"></p>
+```
+
+</div>
 
 
     </main>
+
+```
+    <!-- FREQUENTLY ASKED QUESTIONS -->
+
+    <section class="faq-section">
+
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+
+            <button class="faq-question" type="button"
+                    aria-expanded="false">
+                What products does eKofini@Proper offer?
+                <span>+</span>
+            </button>
+
+            <div class="faq-answer" hidden>
+                <p>We offer coffee, meals, snacks and refreshments
+                for the Ekangala community.</p>
+            </div>
+
+        </div>
+
+        <div class="faq-item">
+
+            <button class="faq-question" type="button"
+                    aria-expanded="false">
+                What are your prices?
+                <span>+</span>
+            </button>
+
+            <div class="faq-answer" hidden>
+                <p>Our listed services include coffee from R25,
+                meals and snacks from R30, and meeting space from
+                R100. Please contact us to confirm current prices.</p>
+            </div>
+
+        </div>
+
+        <div class="faq-item">
+
+            <button class="faq-question" type="button"
+                    aria-expanded="false">
+                How can I make an enquiry?
+                <span>+</span>
+            </button>
+
+            <div class="faq-answer" hidden>
+                <p>Visit our Enquiry page and complete the form
+                to ask about our products and services.</p>
+            </div>
+
+        </div>
+
+    </section>
+```
+
 
 
     <!-- FOOTER -->
@@ -470,6 +579,64 @@
     </footer>
 
 
-</body>
+<script>
+const galleryImages = document.querySelectorAll(".gallery-image");
+const lightbox = document.getElementById("lightbox");
+const lightboxImage = document.getElementById("lightboxImage");
+const lightboxCaption = document.getElementById("lightboxCaption");
+const closeLightbox = document.getElementById("closeLightbox");
+closeLightbox.addEventListener("click", function() {
+    closeImageLightbox();
+});
+let previousFocus = null;
 
+function openLightbox(image) {
+    previousFocus = document.activeElement;
+
+    lightboxImage.src = image.src;
+    lightboxImage.alt = image.alt;
+    lightboxCaption.textContent = image.alt;
+
+    lightbox.hidden = false;
+    closeLightbox.focus();
+}
+
+function closeImageLightbox() {
+    lightbox.hidden = true;
+    lightboxImage.src = "";
+
+    if (previousFocus) {
+        previousFocus.focus();
+    }
+}
+
+galleryImages.forEach(function(image) {
+    image.addEventListener("click", function() {
+        openLightbox(image);
+    });
+
+    image.addEventListener("keydown", function(event) {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openLightbox(image);
+        }
+    });
+});
+
+document.querySelectorAll(".faq-question").forEach(function(button) {
+    button.addEventListener("click", function() {
+        const answer = button.nextElementSibling;
+        const isOpen = button.getAttribute("aria-expanded") === "true";
+
+        answer.hidden = isOpen;
+        button.setAttribute("aria-expanded", String(!isOpen));
+
+        const symbol = button.querySelector("span");
+        if (symbol) {
+            symbol.textContent = isOpen ? "+" : "−";
+        }
+    });
+});
+</script>
+</body>
 </html>
