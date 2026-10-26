@@ -1,5 +1,11 @@
 # Changelog – eKofini@Proper Website
 
+
+
+
+
+
+
 This changelog records the development and improvements made to the eKofini@Proper website.
 
 ## Version 1.0 – Website Development
@@ -43,3 +49,6 @@ This changelog records the development and improvements made to the eKofini@Prop
 * Review SEO titles, meta descriptions and image alternative text.
 * Test form validation and submission.
 * Confirm that all pages work correctly after deployment.
+
+
+

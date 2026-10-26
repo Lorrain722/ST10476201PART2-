@@ -231,6 +231,37 @@
     </section>
 
     <!-- FIND US SECTION -->
+     ```
+<!-- CONTACT FORM SECTION -->
+<section class="contact-form-section">
+
+    <h2>Send Us a Message</h2>
+
+    <p>Have a question about our coffee, meals or services? Complete the form below.</p>
+
+    <form id="contactForm">
+
+        <label for="contactName">Full Name:</label>
+        <input type="text" id="contactName" name="name" required>
+
+        <label for="contactEmail">Email Address:</label>
+        <input type="email" id="contactEmail" name="email" required>
+
+        <label for="contactSubject">Subject:</label>
+        <input type="text" id="contactSubject" name="subject" required>
+
+        <label for="contactMessage">Your Message:</label>
+        <textarea id="contactMessage" name="message" rows="5" required></textarea>
+
+        <button type="submit">Send Message</button>
+
+        <p id="contactResponse" role="status" aria-live="polite"></p>
+
+    </form>
+
+</section>
+```
+
     <section class="location-section">
 
         <h2>Find Us</h2>
@@ -369,6 +400,44 @@
         </p>
 
     </footer>
+<script>
+    <script>
+    const contactForm = document.getElementById("contactForm");
+    const contactResponse = document.getElementById("contactResponse");
+
+    if (contactForm && contactResponse) {
+        contactForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            if (!contactForm.checkValidity()) {
+                contactForm.reportValidity();
+                return;
+            }
+
+            const name = document.getElementById("contactName").value.trim();
+            const email = document.getElementById("contactEmail").value.trim();
+            const subject = document.getElementById("contactSubject").value.trim();
+            const message = document.getElementById("contactMessage").value.trim();
+
+            const emailSubject = encodeURIComponent(subject);
+            const emailBody = encodeURIComponent(
+                "Name: " + name + "\n" +
+                "Customer email: " + email + "\n\n" +
+                "Message:\n" + message
+            );
+
+            contactResponse.textContent =
+                "Opening your email application. Please send the message to complete your enquiry.";
+
+            window.location.href =
+                "mailto:info@ekofiniproper.com?subject=" +
+                emailSubject + "&body=" + emailBody;
+        });
+    
+</script>
+
+    
+</script>
 
 </body>
 
