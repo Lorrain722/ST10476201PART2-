@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>eKofini@Proper | Enquiry</title>
+    <title>Enquiry| eKofini@Proper coffee shop</title>
 <link rel="stylesheet" href="css/style.css">
     <style>
 
@@ -446,6 +446,7 @@
                         type="submit"
                         class="submit-button"
                     >
+                    <button type="submit"class="submit-button">
                         Submit Enquiry
                     </button>
 
@@ -457,7 +458,7 @@
                     </button>
 
                 </div>
-
+<p id="enquiryResponse" role="status" aria-live="polite"></p>
             </form>
 
         </section>
@@ -501,6 +502,26 @@
         </p>
 
     </footer>
+<script>
+    const enquiryForm = document.querySelector('form');
+    const enquiryResponse = document.getElementById("enquiryResponse");
+
+    if (enquiryForm && enquiryResponse) {
+        enquiryForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            if (!enquiryForm.checkValidity()) {
+                enquiryForm.reportValidity();
+                return;
+            }
+
+            enquiryResponse.textContent =
+                "Thank you! Your enquiry has been recorded successfully. We will contact you soon.";
+
+            enquiryForm.reset();
+        });
+    }
+</script>
 
 
 </body>

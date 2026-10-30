@@ -2,6 +2,10 @@
 <html lang="en">
 
 <head>
+   <title>Contact Us | eKofini@Proper Coffee Shop</title>
+<meta name="description" content="Contact eKofini@Proper in Ekangala for enquiries about our coffee, meals, snacks and services. Find our contact details and location.">
+<meta name="keywords" content="contact eKofini@Proper, Ekangala coffee shop, coffee shop contact details">
+ 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -231,7 +235,7 @@
     </section>
 
     <!-- FIND US SECTION -->
-     ```
+     
 <!-- CONTACT FORM SECTION -->
 <section class="contact-form-section">
 
@@ -401,12 +405,11 @@
 
     </footer>
 <script>
-    <script>
     const contactForm = document.getElementById("contactForm");
     const contactResponse = document.getElementById("contactResponse");
 
     if (contactForm && contactResponse) {
-        contactForm.addEventListener("submit", function (event) {
+        contactForm.addEventListener("submit", function(event) {
             event.preventDefault();
 
             if (!contactForm.checkValidity()) {
@@ -420,25 +423,27 @@
             const message = document.getElementById("contactMessage").value.trim();
 
             const emailSubject = encodeURIComponent(subject);
+
             const emailBody = encodeURIComponent(
                 "Name: " + name + "\n" +
                 "Customer email: " + email + "\n\n" +
                 "Message:\n" + message
             );
 
-            contactResponse.textContent =
-                "Opening your email application. Please send the message to complete your enquiry.";
-
-            window.location.href =
+            const mailtoLink =
                 "mailto:info@ekofiniproper.com?subject=" +
                 emailSubject + "&body=" + emailBody;
+
+            contactResponse.innerHTML =
+                'Your enquiry is ready. ' +
+                "Your contact form is working successfully"
+                '<a href="' + mailtoLink + '">Click here to send your email.</a>';
         });
-    
+    }
 </script>
 
-    
+   
 </script>
 
 </body>
-
 </html>
